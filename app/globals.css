@@ -1,7 +1,9 @@
 @import "tailwindcss";
-@import "tailwindcss/preflight";
+@import 'tailwindcss/utilities';
 
-@tailwind utilities;
+/* @import "tailwindcss/preflight"; */
+/* @import 'tailwindcss/base'; */
+/* @import 'tailwindcss/components'; */
 
 :root {
   --foreground-rgb: 0, 0, 0;
