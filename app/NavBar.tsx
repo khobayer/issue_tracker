@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
+import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import classNames from "classnames";
 import { AiFillBug } from "react-icons/ai";
 
 const NavBar = () => {
@@ -11,7 +10,7 @@ const NavBar = () => {
 
   const links = [
     { lable: "Dashboard", href: "/" },
-    { lable: "Issues", href: "/issues" },
+    { lable: "Issues", href: "/issues/list" },
   ];
 
   return (
