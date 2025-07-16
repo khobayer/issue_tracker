@@ -7,7 +7,7 @@ import NextLink from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 
 interface Props {
-  searchParams: Promise<{ status: Status, orderBy: keyof Issue }>;
+  searchParams: Promise<{ status: Status; orderBy: keyof Issue }>;
 }
 
 const Issuespage = async ({ searchParams }: Props) => {
@@ -24,14 +24,22 @@ const Issuespage = async ({ searchParams }: Props) => {
   ];
 
   const statuses = Object.values(Status);
+
   const status = statuses.includes(searchParam.status)
     ? searchParam.status
+    : undefined;
+
+  const orderBy = columns
+    .map((column) => column.value)
+    .includes(searchParam.orderBy)
+    ? { [searchParam.orderBy]: "asc" }
     : undefined;
 
   const issues = await prisma.issue.findMany({
     where: {
       status,
     },
+    orderBy,
   });
 
   return (
@@ -50,7 +58,9 @@ const Issuespage = async ({ searchParams }: Props) => {
                 >
                   {column.lable}
                 </NextLink>
-                {column.value === searchParam.orderBy && <ArrowUpIcon className="inline" />}
+                {column.value === searchParam.orderBy && (
+                  <ArrowUpIcon className="inline" />
+                )}
               </Table.ColumnHeaderCell>
             ))}
           </Table.Row>
