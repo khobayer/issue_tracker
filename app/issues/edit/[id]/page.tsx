@@ -4,7 +4,7 @@ import IssueForm from "../../_components/DynamicIssueForm";
 import delay from "delay"
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 const EditIssuePage = async ({ params }: Props) => {
   const { id } = await params;
